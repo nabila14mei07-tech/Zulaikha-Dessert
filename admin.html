@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Zulaikha Dessert</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="admin-header">
+    <div class="container">
+      <h1>👑 Admin Panel</h1>
+      <p>Kelola produk, varian & stok Zulaikha Premium Dessert</p>
+      <a href="index.html" class="back-link">← Lihat Website Customer</a>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+
+    <!-- TABS -->
+    <div class="admin-tabs">
+  <button class="admin-tab-btn active" data-tab="pesanan">📋 Pesanan</button>
+  <button class="admin-tab-btn" data-tab="produk">🛍️ Produk</button>
+  <button class="admin-tab-btn" data-tab="varian">🎨 Varian</button>
+  <button class="admin-tab-btn" data-tab="ulasan">⭐ Ulasan</button>
+  <button class="admin-tab-btn" data-tab="kritik-saran">💬 Kritik & Saran</button>
+</div>
+
+    <!-- TAB PESANAN -->
+    <div class="admin-tab-pane active" id="tab-pesanan">
+      <div class="orders-section">
+        <h2 class="section-admin-title">📋 Riwayat Pesanan</h2>
+        <div class="orders-list" id="ordersList"></div>
+      </div>
+    </div>
+
+    <!-- TAB PRODUK -->
+    <div class="admin-tab-pane" id="tab-produk">
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card"><span class="stat-label">Total Produk</span><strong class="stat-value" id="statTotal">0</strong></div>
+        <div class="stat-card"><span class="stat-label">Tersedia</span><strong class="stat-value stat-ok" id="statAvailable">0</strong></div>
+        <div class="stat-card"><span class="stat-label">Habis</span><strong class="stat-value stat-out" id="statSoldOut">0</strong></div>
+        <div class="stat-card"><span class="stat-label">Total Stok</span><strong class="stat-value" id="statStock">0</strong></div>
+      </div>
+
+      <div class="action-bar">
+        <input type="search" id="adminSearch" class="admin-search" placeholder="🔍 Cari produk..." />
+        <button class="btn-add" id="btnAddProduct">+ Tambah Produk</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="product-table">
+          <thead>
+            <tr><th>Foto</th><th>Nama Produk</th><th>Kategori</th><th>Harga</th><th>Stok</th><th>Status</th><th>Aksi</th></tr>
+          </thead>
+          <tbody id="productTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB VARIAN -->
+    <div class="admin-tab-pane" id="tab-varian">
+      <div class="varian-section">
+        <div class="varian-block">
+          <div class="varian-header">
+            <h2 class="section-admin-title">🍫 Varian Rasa</h2>
+            <button class="btn-add-variant" id="btnAddRasa">+ Tambah Rasa</button>
+          </div>
+          <div class="variant-list" id="rasaList"></div>
+        </div>
+        <div class="varian-block">
+          <div class="varian-header">
+            <h2 class="section-admin-title">🍪 Varian Toping</h2>
+            <button class="btn-add-variant" id="btnAddToping">+ Tambah Toping</button>
+          </div>
+          <div class="variant-list" id="topingList"></div>
+        </div>
+        <div class="varian-block">
+          <div class="varian-header">
+            <h2 class="section-admin-title">📦 Varian Porsi</h2>
+            <button class="btn-add-variant" id="btnAddPorsi">+ Tambah Porsi</button>
+          </div>
+          <div class="variant-list" id="porsiList"></div>
+        </div>
+      </div>
+    </div>
+
+            <!-- TAB ULASAN -->
+    <div class="admin-tab-pane" id="tab-ulasan">
+      <div class="admin-reviews-section">
+        <div class="admin-tab-header">
+          <h2 class="section-admin-title">⭐ Ulasan Customer</h2>
+          <span class="admin-tab-hint">Ulasan dengan nama — terlihat publik di website customer</span>
+        </div>
+        <div class="admin-reviews-list" id="adminReviewsList"></div>
+      </div>
+    </div>
+
+    <!-- TAB KRITIK & SARAN -->
+    <div class="admin-tab-pane" id="tab-kritik-saran">
+      <div class="admin-feedback-section">
+        <div class="admin-tab-header">
+          <h2 class="section-admin-title">💬 Kritik & Saran (Anonim)</h2>
+          <span class="admin-tab-hint">🔒 Pesan anonymous dari customer — HANYA admin yang bisa lihat</span>
+        </div>
+        <div class="admin-feedback-list" id="adminFeedbackList"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL PRODUK -->
+  <div class="modal-admin" id="productModal" aria-hidden="true">
+    <div class="modal-admin-content">
+      <div class="modal-admin-header">
+        <h2 id="modalTitle">Tambah Produk</h2>
+        <button class="modal-close-btn" id="modalClose">&times;</button>
+      </div>
+      <form id="productForm">
+        <input type="hidden" id="inputId" />
+
+        <div class="form-group">
+          <label for="inputNama">Nama Produk *</label>
+          <input type="text" id="inputNama" required maxlength="60" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputKategori">Kategori *</label>
+         <select id="inputKategori" required>
+  <option value="donut">Donut Kukus</option>
+  <option value="cheesequit">Cheesequit</option>
+  <option value="pudding">Pudding</option>
+</select>
+
+          </div>
+          <div class="form-group">
+            <label for="inputHarga">Harga Dasar (Rp) *</label>
+            <input type="number" id="inputHarga" min="0" step="1000" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputStok">Stok *</label>
+            <input type="number" id="inputStok" min="0" required />
+          </div>
+          <div class="form-group">
+            <label for="inputFile">📷 Foto Produk (dari galeri)</label>
+            <input type="file" id="inputFile" accept="image/*" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputImg">Atau path/URL Foto</label>
+          <input type="text" id="inputImg" placeholder="assets/foto.jpeg atau https://..." />
+          <div id="inputFilePreview" class="file-preview"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputDesc">Deskripsi</label>
+          <textarea id="inputDesc" rows="2" maxlength="200"></textarea>
+        </div>
+
+        <fieldset class="variant-fieldset">
+          <legend>🍫 Varian Rasa</legend>
+          <div class="checkbox-grid" id="formRasa"></div>
+        </fieldset>
+
+        <fieldset class="variant-fieldset">
+          <legend>🍪 Varian Toping</legend>
+          <div class="checkbox-grid" id="formToping"></div>
+        </fieldset>
+
+        <fieldset class="variant-fieldset">
+          <legend>📦 Varian Porsi</legend>
+          <div class="checkbox-grid" id="formPorsi"></div>
+        </fieldset>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btnCancel">Batal</button>
+          <button type="submit" class="btn-save">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="admin-toast" id="adminToast" role="status" aria-live="polite"></div>
+
+  <script src="js/products.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/master-variants.js"></script>
+<script src="js/reviews.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

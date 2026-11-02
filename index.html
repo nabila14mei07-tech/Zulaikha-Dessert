@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zulaikha Premium Dessert — Katalog dessert premium sejak 2019. Pesan mudah via WhatsApp." />
+  <title>Zulaikha Premium Dessert — Katalog Dessert</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23fff' stroke='%23E63950' stroke-width='3'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' font-style='italic' fill='%23E63950' text-anchor='middle'%3EZd%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo" aria-label="Zulaikha Premium Dessert — Beranda">
+<img src="assets/logo.png/logo.png" alt="Logo Zulaikha Dessert" class="logo-img" width="44" height="44" />
+  <span class="logo-text">Zulaikha <em>Dessert</em></span>
+</a>
+
+
+<nav class="nav-menu" id="navMenu">
+  <a href="#home">Beranda</a>
+  <a href="#menu">Menu</a>
+  <a href="#tentang">Tentang</a>
+  <a href="#ulasan">Ulasan</a>
+  <a href="#kritik-saran">Kritik & Saran</a>
+  <button class="theme-toggle" id="themeToggle" aria-label="Ganti tema">🌙</button>
+</nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <button class="cart-float" id="cartToggle" aria-label="Buka keranjang belanja">
+    🛒
+    <span class="cart-badge" id="cartBadge">0</span>
+  </button>
+
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="hero-badge">👑 Premium Dessert Since 2019</span>
+        <h1>Manisnya Kebahagiaan<br><span class="accent">di Setiap Gigitan</span></h1>
+        <p>Dessert rumahan premium, dibuat fresh setiap hari dengan bahan pilihan. Pesan langsung via WhatsApp — cepat & mudah.</p>
+        <div class="hero-cta">
+          <a href="#menu" class="btn btn-primary">Lihat Menu</a>
+          <button class="btn btn-outline" id="heroCartBtn">Buka Keranjang</button>
+        </div>
+      </div>
+
+      <div class="hero-img">
+     <div class="hero-img">
+<img src="assets/logo.png/logo.png" alt="Logo Zulaikha Premium Dessert" class="hero-logo" />
+</div>
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <h2 class="section-title">Menu Dessert Kami</h2>
+      <p class="section-sub">Klik tombol <strong>+</strong> untuk tambah ke keranjang</p>
+
+      <div class="menu-controls">
+  <div class="filter-buttons" id="filterButtons" role="group" aria-label="Filter kategori">
+    <button class="filter-btn active" data-category="all">Semua</button>
+    <button class="filter-btn" data-category="donut">Donut Kukus</button>
+    <button class="filter-btn" data-category="cheesequit">Cheesequit</button>
+    <button class="filter-btn" data-category="pudding">Pudding</button>
+  </div>
+  <input type="search" id="searchInput" class="search-input"
+         placeholder="🔍 Cari dessert..." aria-label="Cari produk dessert" />
+</div>
+
+
+      <div class="product-grid" id="productGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>😢 Produk tidak ditemukan. Coba kata kunci lain.</p>
+    </div>
+  </section>
+
+  <section class="about" id="tentang">
+    <div class="container about-inner">
+      <div class="about-content">
+        <svg class="about-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="60" cy="60" r="58" fill="#fff" stroke="#E8E8E8" stroke-width="1.5"/>
+          <g fill="#E63950">
+            <path d="M42 32 L44 24 L49 30 L54 22 L60 30 L66 22 L71 30 L76 24 L78 32 L74 34 L46 34 Z"/>
+          </g>
+          <text x="60" y="80" font-family="Georgia, serif" font-size="46" font-weight="700" font-style="italic" fill="#E63950" text-anchor="middle">Zd</text>
+        </svg>
+        <h2 class="section-title">Tentang Zulaikha Dessert</h2>
+        <p>Berawal dari dapur rumahan tahun 2019, <strong>Zulaikha Premium Dessert</strong> kini melayani ratusan pelanggan setia. Semua dessert dibuat dengan bahan segar pilihan, tanpa pengawet, dan 100% halal.</p>
+        <ul class="about-list">
+          <li>✅ Fresh setiap hari</li>
+          <li>✅ Tanpa pengawet & pewarna buatan</li>
+          <li>✅ Bisa custom untuk acara</li>
+          <li>✅ Handcrafted with love since 2019</li>
+        </ul>
+      </div>
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500&q=80"
+           alt="Dapur pembuatan dessert" class="about-photo" loading="lazy" />
+    </div>
+  </section>
+
+       <!-- ===== ULASAN PRODUK ===== -->
+  <section class="reviews-section" id="ulasan">
+    <div class="container">
+      <h2 class="section-title">Ulasan Produk</h2>
+      <p class="section-sub">Bagikan pengalaman Anda setelah mencoba dessert kami</p>
+
+      <div class="rating-summary">
+        <div class="rating-avg">
+          <span class="rating-number" id="avgRating">0.0</span>
+          <span class="rating-stars" id="avgStars">☆☆☆☆☆</span>
+          <span class="rating-count" id="reviewCount">(0 ulasan)</span>
+        </div>
+      </div>
+
+      <form class="review-form" id="reviewForm" novalidate>
+        <h3>✍️ Tulis Ulasan Anda</h3>
+
+        <div class="form-group">
+          <label for="reviewName">Nama Anda *</label>
+          <input type="text" id="reviewName" required maxlength="40" placeholder="Contoh: Sarah" />
+        </div>
+
+        <div class="form-group">
+          <label>Rating *</label>
+          <div class="star-rating" id="starRating" role="group" aria-label="Pilih rating bintang">
+            <button type="button" class="star" data-value="1">★</button>
+            <button type="button" class="star" data-value="2">★</button>
+            <button type="button" class="star" data-value="3">★</button>
+            <button type="button" class="star" data-value="4">★</button>
+            <button type="button" class="star" data-value="5">★</button>
+          </div>
+          <input type="hidden" id="reviewRating" required />
+          <span class="rating-error" id="ratingError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="reviewText">Ulasan Anda *</label>
+          <textarea id="reviewText" required minlength="10" maxlength="300" rows="4"
+                    placeholder="Ceritakan pengalaman Anda setelah mencoba produk kami..."></textarea>
+          <span class="char-counter"><span id="reviewCharCount">0</span>/300</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kirim Ulasan</button>
+      </form>
+
+      <div class="reviews-list" id="reviewsList"></div>
+    </div>
+  </section>
+
+  <!-- ===== KRITIK & SARAN (ANONYMOUS) ===== -->
+  <section class="feedback-section" id="kritik-saran">
+    <div class="container">
+      <h2 class="section-title">Kritik & Saran</h2>
+      <p class="section-sub">
+        🔒 <strong>Pesan Anda 100% anonim</strong> — bantu kami jadi lebih baik
+      </p>
+
+      <form class="feedback-form" id="feedbackForm" novalidate>
+        <div class="form-group">
+          <label for="feedbackCategory">Kategori *</label>
+          <select id="feedbackCategory" required>
+            <option value="">-- Pilih kategori --</option>
+            <option value="produk">Produk & Rasa</option>
+            <option value="pelayanan">Pelayanan</option>
+            <option value="pengiriman">Pengiriman</option>
+            <option value="harga">Harga</option>
+            <option value="website">Website</option>
+            <option value="lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="feedbackText">Pesan Kritik / Saran *</label>
+          <textarea id="feedbackText" required minlength="10" maxlength="500" rows="5"
+                    placeholder="Tulis kritik, saran, atau masukan Anda secara jujur. Tidak perlu khawatir — pesan ini anonim."></textarea>
+          <span class="char-counter"><span id="feedbackCharCount">0</span>/500</span>
+        </div>
+
+        <div class="feedback-info">
+          <span>🔒 Identitas Anda tidak akan dicatat atau ditampilkan.</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kirim Anonim</button>
+      </form>
+
+      <div class="feedback-success" id="feedbackSuccess" hidden>
+        <p>✅ Terima kasih! Kritik & saran Anda telah terkirim secara anonim.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-panel" id="cartPanel" aria-hidden="true" role="dialog" aria-label="Keranjang belanja">
+    <div class="cart-header">
+      <h2>🛒 Keranjang</h2>
+      <button class="cart-close" id="cartClose" aria-label="Tutup keranjang">&times;</button>
+    </div>
+
+    <div class="cart-body" id="cartBody"></div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">Rp 0</strong>
+      </div>
+      <button class="btn btn-primary btn-block" id="checkoutBtn" disabled>
+        Checkout via WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose" aria-label="Tutup">&times;</button>
+    <img id="modalImg" src="" alt="" />
+    <div class="modal-body">
+      <h3 id="modalTitle"></h3>
+      <p id="modalPrice" class="price"></p>
+      <p id="modalDesc"></p>
+      <div id="modalVariantArea"></div>
+      <button type="button" class="btn btn-primary btn-block" id="modalAddBtn">Tambah ke Keranjang</button>
+    </div>
+  </div>
+</div>
+
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+<img src="assets/logo.png/logo.png" alt="Logo Zulaikha Dessert" class="footer-logo" width="64" height="64" />
+    <p class="footer-brand">Zulaikha Premium Dessert</p>
+    <p class="footer-tagline">Handcrafted with love since 2019</p>
+    <p class="footer-copy">&copy; 2026 Zulaikha Dessert — UMKM Dessert Premium. Project UTS Pemrograman II. · <a href="admin.html" style="color:rgba(255,255,255,.7);">Admin</a></p>
+  </div>
+</footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+<script src="js/products.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/master-variants.js"></script>
+<script src="js/reviews.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
+
