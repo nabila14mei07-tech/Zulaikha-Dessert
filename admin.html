@@ -11,12 +11,22 @@
 <body>
 
   <header class="admin-header">
-    <div class="container">
-      <h1>👑 Admin Panel</h1>
-      <p>Kelola produk, varian & stok Zulaikha Premium Dessert</p>
-      <a href="index.html" class="back-link">← Lihat Website Customer</a>
+  <div class="container">
+    <div class="admin-header-top">
+      <div>
+        <h1>👑 Admin Panel</h1>
+        <p>Kelola produk & stok Zulaikha Premium Dessert</p>
+      </div>
+      <div class="admin-header-actions">
+        <a href="index.html" class="back-link">← Website</a>
+        <button type="button" class="btn-logout" id="btnLogout" onclick="if(confirm('Yakin ingin logout?')) window.ZDAuth.logout();">
+          🚪 Logout
+        </button>
+      </div>
     </div>
-  </header>
+  </div>
+</header>
+
 
   <main class="admin-main container">
 
@@ -190,11 +200,26 @@
 
   <div class="admin-toast" id="adminToast" role="status" aria-live="polite"></div>
 
+   <!-- Scripts -->
   <script src="js/products.js"></script>
-<script src="js/orders.js"></script>
-<script src="js/master-variants.js"></script>
-<script src="js/reviews.js"></script>
-<script src="js/admin.js"></script>
+  <script src="js/orders.js"></script>
+  <script src="js/master-variants.js"></script>
+  <script src="js/reviews.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
 
+  <!-- Cek auth SETELAH semua script load -->
+  <script>
+    (function () {
+      if (typeof window.ZDAuth === "undefined") {
+        alert("⚠️ auth.js tidak ter-load!\n\nCek Console (F12) untuk detail.");
+        console.error("❌ window.ZDAuth undefined di admin.html");
+        return;
+      }
+      if (!window.ZDAuth.isLoggedIn()) {
+        window.location.href = "login.html";
+      }
+    })();
+  </script>
 </body>
 </html>

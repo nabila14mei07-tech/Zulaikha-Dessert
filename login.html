@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Admin — Zulaikha Dessert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #E63950;
+      --primary-dark: #C42B40;
+      --primary-light: #FFC9D1;
+      --bg: #FFF8F9;
+      --text: #2E1A1F;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #FFE5EA 0%, #FFF8F9 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-container {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(230, 57, 80, 0.25);
+    }
+    .login-icon {
+      width: 72px; height: 72px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #E63950, #C42B40);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 24px rgba(230, 57, 80, 0.4);
+    }
+    h1 { font-size: 1.5rem; color: var(--primary); text-align: center; margin-bottom: 6px; }
+    .subtitle { font-size: .88rem; opacity: .7; text-align: center; margin-bottom: 28px; }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-weight: 600; font-size: .88rem; margin-bottom: 8px; }
+    .input-wrap { position: relative; }
+    input {
+      width: 100%;
+      padding: 14px 46px 14px 16px;
+      border: 2px solid var(--primary-light);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--bg);
+      color: var(--text);
+    }
+    input:focus { outline: none; border-color: var(--primary); background: #fff; }
+    input.error { border-color: #e53935; }
+    .toggle-pass {
+      position: absolute;
+      right: 12px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 6px;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #E63950, #C42B40);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    button[type="submit"]:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(230, 57, 80, 0.5);
+    }
+    button[type="submit"]:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .error-message {
+      display: none;
+      background: #FFEBEE;
+      color: #C62828;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      border-left: 3px solid #C62828;
+    }
+    .error-message.show { display: block; }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-icon">🔐</div>
+    <h1>Admin Panel</h1>
+    <p class="subtitle">Masukkan password untuk melanjutkan</p>
+
+    <div class="error-message" id="errorMessage"></div>
+
+    <form id="loginForm" autocomplete="off">
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <div class="input-wrap">
+          <input type="password" id="passwordInput"
+                 placeholder="Masukkan password..."
+                 autocomplete="off" />
+          <button type="button" class="toggle-pass" id="togglePass">👁️</button>
+        </div>
+      </div>
+
+      <button type="submit" id="btnLogin">🔓 Masuk</button>
+    </form>
+
+    <a href="index.html" class="back-link">← Kembali ke Website</a>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Jika sudah login → langsung ke admin
+    if (sessionStorage.getItem("zulaikha_admin_logged_v1") === "true") {
+      window.location.href = "admin.html";
+    }
+
+    const form = document.getElementById("loginForm");
+    const passwordInput = document.getElementById("passwordInput");
+    const togglePass = document.getElementById("togglePass");
+    const btnLogin = document.getElementById("btnLogin");
+    const errorMessage = document.getElementById("errorMessage");
+
+    togglePass.addEventListener("click", () => {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePass.textContent = "🙈";
+      } else {
+        passwordInput.type = "password";
+        togglePass.textContent = "👁️";
+      }
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const inputPass = passwordInput.value.trim();
+
+      // Cek apakah auth.js ter-load
+      if (typeof window.ZDAuth === "undefined") {
+        showError("❌ auth.js tidak ter-load. Buka F12 → Console untuk detail.");
+        console.error("❌ window.ZDAuth undefined! Periksa js/auth.js.");
+        return;
+      }
+
+      if (!inputPass) {
+        showError("Password tidak boleh kosong");
+        return;
+      }
+
+      const isValid = window.ZDAuth.verifyPassword(inputPass);
+      console.log("🔍 Login attempt:", { input: inputPass, valid: isValid });
+
+      if (isValid) {
+        btnLogin.disabled = true;
+        btnLogin.textContent = "✅ Berhasil!...";
+        sessionStorage.setItem("zulaikha_admin_logged_v1", "true");
+        setTimeout(() => { window.location.href = "admin.html"; }, 400);
+      } else {
+        showError("❌ Password salah. Coba lagi.");
+        passwordInput.classList.add("error");
+        passwordInput.value = "";
+        passwordInput.focus();
+        setTimeout(() => passwordInput.classList.remove("error"), 500);
+      }
+    });
+
+    function showError(msg) {
+      errorMessage.textContent = msg;
+      errorMessage.classList.add("show");
+    }
+  </script>
+</body>
+</html>

@@ -820,3 +820,52 @@ body {
 .btn-delete-review:hover,
 .btn-delete-feedback:hover { background: #C62828; color: #fff; }
 
+/* ===== ADMIN HEADER TOP (dengan logout) ===== */
+.admin-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-logout {
+  padding: 8px 16px;
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid #fff;
+  border-radius: 50px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.btn-logout:hover {
+  background: #FF3D57;
+  color: #fff;
+  border-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .admin-header-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .admin-header-actions {
+    justify-content: space-between;
+  }
+}
